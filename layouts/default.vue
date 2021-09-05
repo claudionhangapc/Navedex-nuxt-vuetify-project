@@ -58,7 +58,7 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container class="d-flex justify-start align-center">
         <Nuxt />
       </v-container>
     </v-main>

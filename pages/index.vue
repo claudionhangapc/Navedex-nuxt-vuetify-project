@@ -72,6 +72,10 @@
           </v-btn>
         </v-card-actions>
       </v-card>
+      <div>
+        Teste Feito por Claudio Nhanga pc
+        <nuxt-child></nuxt-child>
+      </div>
     </v-col>
   </v-row>
 </template>

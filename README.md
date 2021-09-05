@@ -1,4 +1,4 @@
-# navdext-nuxt-vuetify-project
+# navdex-nuxt-vuetify-project
 
 ## Build Setup
 
