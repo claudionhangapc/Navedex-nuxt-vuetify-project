@@ -27,7 +27,7 @@
         <v-col cols="12"  class="pa-0 font-weight-black  mb-1">Senha</v-col>
         <v-col cols="12"  class="pa-0"> 
           <v-text-field
-          placeholder="E-mail"
+          placeholder="Senha"
           outlined
           dense
           full-width
