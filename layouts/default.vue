@@ -3,7 +3,7 @@
     <div class="pt-6 pb-6 d-flex justify-center" >
       <v-app-bar
       dense
-      class="pa-0 class-container"
+      class="pa-0 class-container pl-3 pr-3"
       color="white"
       flat
       >
@@ -22,7 +22,7 @@
     </div>
       
     <v-main>
-      <v-container class="class-container ">
+      <v-container class="class-container">
         <Nuxt />
       </v-container>
     </v-main>
@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
   .class-container{
-     max-width: 1106px !important;
+     max-width: 1130px !important;
   }
 
 </style>
