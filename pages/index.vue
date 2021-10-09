@@ -12,16 +12,19 @@
         <naver/>
         <naver/>
         <naver/>
-        <naver/><naver/>
         <naver/>
-        <naver/><naver/>
+        <naver/>
+        <naver/>
+        <naver/>
+        <naver/>
         <naver/>
       </v-row>
     </v-container>
-      
   </div>
     
 </template>
+
+
 <style scoped>
 .class-btn{
   background: #212121;

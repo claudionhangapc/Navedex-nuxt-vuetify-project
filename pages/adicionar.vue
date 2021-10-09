@@ -5,7 +5,6 @@
          <label for="" style=" height:20px;
             width:11px">
            <v-img
-           
             src="/img/vector.svg"
           ></v-img>
          </label>
@@ -14,8 +13,8 @@
           </h4>   
        </v-row>
       <v-row>
-        <v-col class="" cols="12" sm="6">
-          <div class="mb-8 input-width" >
+        <v-col class="pl-4 pr-4" cols="12" sm="6">
+          <div class="mb-8 input-width mr-0" >
             <p class="ma-0 text-body-2 mb-1">Nome</p>
             <v-text-field 
               class="pa-0 ma-0 input-border " 
@@ -27,7 +26,7 @@
               autofocus
               flat
               height="40"
-              width="240"
+              width="280"
               >
 
             </v-text-field>
@@ -65,7 +64,7 @@
             </v-text-field>
           </div>
         </v-col>
-        <v-col  cols="12" sm="6">
+        <v-col class="pl-4 pr-4" cols="12" sm="6">
            <div class="mb-8 input-width">
             <p class="ma-0 text-body-2 mb-1">Cargo</p>
             <v-text-field 
@@ -141,9 +140,7 @@
    .input-border{
     border: 1px solid #424242 !important;
   }
-  .input-width{
-    width:240px
-  }
+ 
 </style>
 
 

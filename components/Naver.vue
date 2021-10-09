@@ -26,8 +26,25 @@
         small>
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
-        
       </v-card-action>
     </v-card>
+    <modal-visualizacao @updateDialog="updateDialogIndex" :dialog="dialog"/>
+
   </v-col>
 </template>
+
+<script>
+export default {
+
+  data(){
+    return{
+      dialog:true
+    }
+  },
+  methods:{
+    updateDialogIndex(value){
+      this.dialog=value
+    }
+  }
+}
+</script>
