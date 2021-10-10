@@ -1,25 +1,30 @@
 <template>
   <div>
     <v-container>
-      <v-row class="pl-3 pr-3">
+      <v-row class="pl-3 pr-3 mb-6">
         <h2>NAVERS</h2>
         <v-spacer/>
-        <button class="class-btn">
-          Adicionar Naver
-        </button>
+        <v-btn
+          nuxt
+          to="/adicionar"
+          min-width="176" 
+          min-height="40" 
+          dark
+        >
+          Excluir
+        </v-btn>
       </v-row>
       <v-row>
-        <naver/>
-        <naver/>
-        <naver/>
-        <naver/>
-        <naver/>
-        <naver/>
-        <naver/>
-        <naver/>
-        <naver/>
+        <naver id="4"/>
+        <naver id="3"/>
+        <naver id="2"/>
+        <naver id="1"/>
+        <naver id="6"/>
+        
       </v-row>
+       <NuxtChild/>
     </v-container>
+    
   </div>
     
 </template>
@@ -35,6 +40,7 @@
   line-height: 24px;
   padding: 8px 16px;
   font-family: "Montserrat", sans-serif;
+  text-decoration: none;
 }
 .class-text{
   color: #212121;

@@ -26,8 +26,8 @@
                  <p class="text-h5 text--primary mb-2">Projeto que participou</p>
                  <div class="mb-16">Front-end Developer</div>
                </v-card-text>
-               <v-row class="pt-11">
-                 <v-card-action >
+               <v-row class="pt-7">
+                 <v-card-actions >
                     <v-btn
                     icon 
                     class="mb-4 "
@@ -42,7 +42,7 @@
                     small>
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                  </v-card-action>
+                  </v-card-actions>
                </v-row>
              </v-card>
          </v-col>
@@ -55,20 +55,16 @@
 <script>
 export default {
   
-  props:{
-     dialog:{
-       type: Boolean,
-       required: true
-     }
-  },
+
   data(){
     return{
-
+      dialog:true
     }
   },
   methods:{
     closeModal(){
-      this.$emit('updateDialog',false)
+      this.dialog = false 
+      this.$nuxt.$options.router.push('/')
     }
   }
 }

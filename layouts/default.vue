@@ -8,11 +8,14 @@
       flat
       >
           <v-row >
+            <NuxtLink to="/">
               <v-img
               max-height="37"
               max-width="156"
               src="/img/logo.png"
             ></v-img>
+            </NuxtLink>
+              
             <v-spacer/>
             <v-btn
               text
