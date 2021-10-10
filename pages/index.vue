@@ -11,7 +11,7 @@
           min-height="40" 
           dark
         >
-          Excluir
+          Adicionar
         </v-btn>
       </v-row>
       <v-row>
