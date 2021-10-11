@@ -9,9 +9,10 @@
         ></v-img>    
       </v-row>
       <v-row class="pt-10">
-        <v-col cols="12" class="pa-0 font-weight-black mb-1">Email</v-col>
+        <v-col cols="12" class="pa-0 font-weight-black mb-1">Email {{$auth.loggedIn}}</v-col>
         <v-col cols="12"  class="pa-0"> 
           <v-text-field
+          v-model='login.email'
           placeholder="E-mail"
           outlined
           dense
@@ -27,6 +28,7 @@
         <v-col cols="12"  class="pa-0 font-weight-black  mb-1">Senha</v-col>
         <v-col cols="12"  class="pa-0"> 
           <v-text-field
+          v-model='login.password'
           placeholder="Senha"
           outlined
           dense
@@ -42,6 +44,7 @@
       <v-row class="pt-8">
         <v-col cols="12"  class="pa-0">
           <v-btn 
+            @click="userLogin"
             class="white--text"
             color="#212121"
             depressed
@@ -58,6 +61,33 @@
 export default {
   layout: 'public',
   // OR
+  data(){
+    return{
+      login:{
+        email:'meusitepc@gmail.com',
+        password:'123457'
+      }
+    }
+  },
+  methods:{
+    async userLogin(){
+      try{
+        const response = await this.$auth.loginWith('local',{
+          data:this.login
+        })
+        this.$auth.setUser(
+          {
+            id:response.data.id,
+            email:response.data.email
+          }
+        )
+        this.$router.replace("/")
+        
+      }catch(err){
+        console.log(err)
+      }
+    }
+  }
 }
 </script>
 

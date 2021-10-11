@@ -18,6 +18,7 @@
               
             <v-spacer/>
             <v-btn
+              @click="logout"
               text
             >Sair</v-btn>  
           </v-row>
@@ -36,6 +37,12 @@
 export default {
   data () {
     return {
+    }
+  }, 
+  methods:{
+    async logout(){
+      await this.$auth.logout();
+      this.$router.push("/login")
     }
   }
 }

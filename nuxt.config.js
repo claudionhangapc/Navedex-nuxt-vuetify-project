@@ -45,7 +45,37 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+  axios:{
+    baseUrl:'https://navedex-api.herokuapp.com/v1'
+  },
+  router: {
+    middleware: ['auth']
+  },
+  auth:{
+    //options
+    strategies:{
+      local:{
+        token:{
+          property:'token',
+          global:true,
+        },
+        user: {
+          property:'', 
+            
+        },
+        endpoints:{
+          login:{
+            url:'/users/login', methods:'post'
+          },
+          logout:false,
+          user:false
+        }
+      }
+    }
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
