@@ -24,6 +24,7 @@
            min-width="176" 
            min-height="40" 
            dark
+           @click="deleteNaver"
            >
              Excluir
            </v-btn>
@@ -47,10 +48,16 @@
 
 <script>
 export default {
+
   data(){
     return{
       dialog:true,
       controlContainer:true
+    }
+  },
+  computed:{
+    id(){
+      return this.$route.params.id
     }
   },
   methods:{
@@ -58,6 +65,10 @@ export default {
       this.dialog = false
       this.controlContainer = true 
       this.$nuxt.$options.router.push('/')
+    },
+    deleteNaver(){
+     this.$store.dispatch('naver/delete', this.id)
+     this.controlContainer = false
     }
   }
 }
