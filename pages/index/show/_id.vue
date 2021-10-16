@@ -17,29 +17,33 @@
                     <v-icon @click="closeModal">mdi-close</v-icon>
                </v-row>
                <v-card-text class="pa-0 ">
-                 <p class="text-h5 text--primary mb-2">Juliano Reis</p>
-                 <div class="mb-6">Front-end Developer</div>
+                 <p class="text-h5 text--primary mb-2">{{naver.name}}</p>
+                 <div class="mb-6">{{naver.job_role}}</div>
                  <p class="text-h5 text--primary mb-2">idade</p>
-                 <div class="mb-6">Front-end Developer</div>
+                 <div class="mb-6">{{naver.birthdate}}</div>
                  <p class="text-h5 text--primary mb-2">Tempo na empresa</p>
-                 <div class="mb-6">Front-end Developer</div>
+                 <div class="mb-6">{{naver.admission_date}}</div>
                  <p class="text-h5 text--primary mb-2">Projeto que participou</p>
-                 <div class="mb-16">Front-end Developer</div>
+                 <div class="mb-16">{{naver.project}}</div>
                </v-card-text>
                <v-row class="pt-7">
                  <v-card-actions >
                     <v-btn
-                    icon 
-                    class="mb-4 "
-                    color="#000"
-                    small>
+                      nuxt
+                      :to="`/deletar/${naver.id}`"
+                      icon 
+                      class="mb-4 "
+                      color="#000"
+                      small>
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                     <v-btn
-                    icon 
-                    class="mb-4 "
-                    color="#000"
-                    small>
+                      nuxt
+                      :to="`/editar/${naver.id}`"
+                      icon 
+                      class="mb-4 "
+                      color="#000"
+                      small>
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
                   </v-card-actions>
@@ -55,16 +59,33 @@
 <script>
 export default {
   
+  created(){
+    this.fetchSingle()
+    
+  },
 
   data(){
     return{
-      dialog:true
+      dialog:true,
+      naver:{},
+    }
+  },
+  computed:{
+    id(){
+      return this.$route.params.id
     }
   },
   methods:{
     closeModal(){
       this.dialog = false 
       this.$nuxt.$options.router.push('/')
+    },
+    openModal(){
+       this.dialog = true
+    },
+    async fetchSingle(){
+      this.naver = await this.$store.dispatch('naver/fetchSingle', this.id)
+      this.openModal()
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <v-col xs="12" md="3">
     <v-card width="281px" elevation="0">
-        <v-card  elevation="0" :to="`/show/${id}`">
+        <v-card  elevation="0" :to="`/show/${item.id}`">
           <v-list class="pa-0">
           <v-list-item class="pa-0">
                   <v-img
@@ -11,8 +11,8 @@
           </v-list-item>
           <v-list-item class="pa-0">
              <v-card-text class="pa-0">
-              <p class="font-weight-bold mb-1 mt-3" >Juliano Reis {{id}}</p>
-              <p class="font-weight-regular">Front-end Developer f</p>
+              <p class="font-weight-bold mb-1 mt-3" >{{item.name}}</p>
+              <p class="font-weight-regular">{{item.job_role}}</p>
               </v-card-text>
           </v-list-item>
         </v-list>
@@ -20,7 +20,7 @@
       <v-card-actions >
         <v-btn
            nuxt
-          :to="`/deletar/${id}`"
+          :to="`/deletar/${item.id}`"
           icon 
           class="mb-4 "
           color="#000"
@@ -29,7 +29,7 @@
         </v-btn>
         <v-btn
           nuxt
-          :to="`/editar/${id}`"
+          :to="`/editar/${item.id}`"
           icon 
           class="mb-4 "
           color="#000"
@@ -46,8 +46,8 @@
 <script>
 export default {
   props:{
-    id:{
-      type:String,
+    item:{
+      type:Object,
       required:true
     }
   },

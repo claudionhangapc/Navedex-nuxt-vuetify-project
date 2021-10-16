@@ -15,12 +15,7 @@
         </v-btn>
       </v-row>
       <v-row>
-        <naver id="4"/>
-        <naver id="3"/>
-        <naver id="2"/>
-        <naver id="1"/>
-        <naver id="6"/>
-        
+        <naver v-for="(naver, index) in navers" id="4" :key='index' :item="naver"/>
       </v-row>
        <NuxtChild/>
     </v-container>
@@ -28,6 +23,30 @@
   </div>
     
 </template>
+<script>
+
+export default{
+  data(){
+    return{
+
+    }
+  },
+  computed:{
+    navers(){
+      return this.$store.state.naver.navers
+    }
+  },
+  created(){
+    this.fetch()
+  },
+  
+  methods:{
+    fetch(){
+      this.$store.dispatch('naver/fetch')
+    }
+  }
+}
+</script>
 
 
 <style scoped>

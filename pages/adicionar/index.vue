@@ -120,7 +120,7 @@
               color="#212121"
               depressed
               height="40"
-              >
+              @click="createNaver">
               Salvar
             </v-btn>
           </div>
@@ -132,6 +132,28 @@
   </div>
     
 </template>
+<script>
+  export default {
+    data(){
+      return{
+        naver:{
+          job_role:'Desenvolvedor',
+          admission_date:'19/08/2018',
+          birthdate:'12/04/1992',
+          project:'Project Backend Test',
+          name:'Christian Tavares',
+          url:'https://claudionhangapc.com/projetos/navedex/img/eduardo.png',
+        }
+      }
+    },
+    methods:{
+      createNaver(){
+        this.$store.dispatch('naver/create', this.naver)
+      }
+    }
+  } 
+</script>
+
 <style scoped>
 
   .class-container{
