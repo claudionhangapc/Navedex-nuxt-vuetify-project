@@ -31,17 +31,20 @@ export default {
     message:{
       type:String,
       required:true
+    },
+    dialog:{
+      type:Boolean,
+      required:true
     }
   },
 
   data(){
     return{
-      dialog:false,
     }
   },
   methods:{
-    closeModal(){
-      this.dialog = false
+    closeModal(value){
+     this.$emit('change', false)
     }
   }
 }

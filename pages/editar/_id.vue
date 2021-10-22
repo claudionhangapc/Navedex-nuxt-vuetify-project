@@ -4,10 +4,11 @@
        <v-row class="pl-3 pr-3 d-flex align-center mb-7">
          <label for="" style=" height:20px;
             width:11px">
-           <v-img
-           
-            src="/img/vector.svg"
-          ></v-img>
+            <NuxtLink to="/">
+              <v-img
+                src="/img/vector.svg"
+              ></v-img>
+            </NuxtLink>
          </label>
           <h4 class="text-h4 ml-5"> 
              Editar Naver
@@ -28,25 +29,42 @@
               flat
               height="40"
               width="280"
+              v-model="naver.name"
               >
 
             </v-text-field>
           </div>
           <div class="mb-8 input-width">
             <p class="ma-0 text-body-2 mb-1">Idade</p>
-            <v-text-field 
-              class="pa-0 ma-0 input-border" 
-              outlined
-              label="Idade"
-              solo
-              dense
-              hide-details
-              autofocus
-              flat
-              height="40"
-              >
-
-            </v-text-field>
+          
+            <v-menu
+              v-model="menu1"
+              :close-on-content-click="false"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                  <v-text-field 
+                    class="pa-0 ma-0 input-border" 
+                    outlined
+                    label="Idade"
+                    solo
+                    dense
+                    hide-details
+                    autofocus
+                    v-bind="attrs"
+                    v-on="on"
+                    flat
+                    height="40"
+                    @click:clear="date = null"
+                    
+                    :value="naver.birthdate"
+                    slot="activator">
+                </v-text-field>
+              </template>
+              <v-date-picker
+                v-model="naver.birthdate"
+                @change="menu1 = false"
+              ></v-date-picker>
+          </v-menu>
           </div>
           <div class="mb-8 input-width">
             <p class="ma-0 text-body-2 mb-1">Projetos que participou</p>
@@ -60,8 +78,8 @@
               autofocus
               flat
               height="40"
+              v-model="naver.project"
               >
-
             </v-text-field>
           </div>
         </v-col>
@@ -78,25 +96,40 @@
               autofocus
               flat
               height="40"
+              v-model="naver.project"
               >
 
             </v-text-field>
           </div>
           <div class="mb-8 input-width">
             <p class="ma-0 text-body-2 mb-1">Tempo de empresa</p>
-            <v-text-field 
-              class="pa-0 ma-0 input-border" 
-              outlined
-              label="Tempo de empresa"
-              solo
-              dense
-              hide-details
-              autofocus
-              flat
-              height="40"
-              >
-
-            </v-text-field>
+            <v-menu
+              v-model="menu2"
+              :close-on-content-click="false"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                  <v-text-field 
+                    class="pa-0 ma-0 input-border" 
+                    outlined
+                    label="Tempo de empresa"
+                    solo
+                    dense
+                    hide-details
+                    autofocus
+                    v-bind="attrs"
+                    v-on="on"
+                    flat
+                    height="40"
+                    @click:clear="date = null"
+                    :value="naver.admission_date"
+                    slot="activator">
+                </v-text-field>
+              </template>
+              <v-date-picker
+                v-model="naver.admission_date"
+                @change="menu2 = false"
+              ></v-date-picker>
+            </v-menu>
           </div>
           <div class="mb-8 input-width">
             <p class="ma-0 text-body-2 mb-1">URL da foto do Naver</p>
@@ -110,6 +143,7 @@
               autofocus
               flat
               height="40"
+              v-model="naver.url"
               >
 
             </v-text-field>
@@ -133,6 +167,43 @@
   </div>
     
 </template>
+<script>
+export default {
+  
+  created(){
+    this.fetchSingle()
+    
+  },
+
+  data(){
+    return{
+      naver:{},
+      menu2: false,
+      menu1: false,
+    }
+  },
+  computed:{
+    id(){
+      return this.$route.params.id
+    }
+  },
+  methods:{
+  
+    async fetchSingle(){
+      this.naver = await this.$store.dispatch('naver/fetchSingle', this.id)
+      this.naver.admission_date = this.formatDate(this.naver.admission_date)
+      this.naver.birthdate = this.formatDate(this.naver.birthdate)
+    },
+    formatDate (date) {
+        if (!date) return null
+        const [year, month, day] = date.split('-')
+        const [onlyDay] = day.split('T')
+        return `${year}-${month}-${onlyDay}`
+    }
+  },
+  
+}
+</script>
 <style scoped>
 
   .class-container{
