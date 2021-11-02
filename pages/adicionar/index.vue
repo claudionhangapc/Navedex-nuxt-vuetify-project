@@ -5,7 +5,6 @@
     v-model="valid"
     lazy-validation
     >
-
       <v-container class="class-container">
         <v-row class="pl-3 pr-3 d-flex align-center mb-7">
           <label for="" style=" height:20px;
@@ -32,7 +31,6 @@
                 dense
                 :rules="rules.nome"
                 v-model="naver.name"
-                autofocus
                 hide-details
                 flat
                 height="40"
@@ -54,14 +52,13 @@
                       solo
                       dense
                       hide-details
-                      autofocus
                       v-bind="attrs"
                       v-on="on"
                       flat
                       height="40"
                       @click:clear="date = null"
                       :rules="rules.idade"
-                      :value="naver.birthdate"
+                      :value="data_aniversario"
                       slot="activator">
                   </v-text-field>
                 </template>
@@ -80,7 +77,6 @@
                 solo
                 dense
                 hide-details
-                autofocus
                 v-model="naver.project"
                 flat
                 :rules="rules.projeto"
@@ -99,7 +95,6 @@
                 solo
                 dense
                 hide-details
-                autofocus
                 v-model="naver.job_role"
                 flat
                 :rules="rules.cargo"
@@ -121,14 +116,13 @@
                     solo
                     dense
                     hide-details
-                    autofocus
                     v-bind="attrs"
                     v-on="on"
                     flat
                     :rules="rules.tempoEmpresa"
                     height="40"
                     @click:clear="date = null"
-                    :value="naver.admission_date"
+                    :value="data_admissao"
                     slot="activator">
                 </v-text-field>
               </template>
@@ -148,7 +142,6 @@
                 v-model="naver.url"
                 dense
                 hide-details
-                autofocus
                 flat
                 :rules="rules.url"
                 height="40"
@@ -212,9 +205,17 @@
         }
       }
     },
+    computed:{
+      data_admissao(){
+        return this.formatDate(this.naver.admission_date)
+      },
+      data_aniversario(){
+        return this.formatDate(this.naver.birthdate)
+      },
+    },
     methods:{
       createNaver(){
-        this.formatDateToDB()
+
         this.$store.dispatch('naver/create', this.naver)
         this.dialog = true
       },
@@ -232,13 +233,13 @@
       formatDate(date) {
         if (!date) return null
         const [year, month, day] = date.split('-')
+
         return `${day}/${month}/${year}`
       },
 
-      formatDateToDB(){
-        this.naver.admission_date = this.formatDate(this.naver.admission_date)
-        this.naver.birthdate = this.formatDate(this.naver.birthdate)
-      }
+    },
+    mounted(){
+      this.$refs.form.reset()
     }
   } 
 </script>

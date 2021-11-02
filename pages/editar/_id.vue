@@ -10,6 +10,7 @@
               ></v-img>
             </NuxtLink>
          </label>
+         {{naver}}
           <h4 class="text-h4 ml-5"> 
              Editar Naver
           </h4>   
@@ -55,8 +56,7 @@
                     flat
                     height="40"
                     @click:clear="date = null"
-                    
-                    :value="naver.birthdate"
+             
                     slot="activator">
                 </v-text-field>
               </template>
@@ -161,7 +161,7 @@
           </div>
         </v-col>
       </v-row>
-      <modal-feed-back title="Naver atualizado" message="Naver atualizado com sucesso!"/>
+      <modal-feed-back  v-on:change="closeModal" :dialog="dialog" title="Naver atualizado" message="Naver atualizado com sucesso!"/>
     </v-container>
       
   </div>
@@ -178,6 +178,7 @@ export default {
   data(){
     return{
       naver:{},
+      dialog:false,
       menu2: false,
       menu1: false,
     }
@@ -191,14 +192,16 @@ export default {
   
     async fetchSingle(){
       this.naver = await this.$store.dispatch('naver/fetchSingle', this.id)
-      this.naver.admission_date = this.formatDate(this.naver.admission_date)
-      this.naver.birthdate = this.formatDate(this.naver.birthdate)
+      
+    },
+    closeModal(value){
+        this.dialog = value
     },
     formatDate (date) {
         if (!date) return null
         const [year, month, day] = date.split('-')
         const [onlyDay] = day.split('T')
-        return `${year}-${month}-${onlyDay}`
+        return `${year}/${month}/${onlyDay}`
     }
   },
   
