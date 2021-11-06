@@ -39,7 +39,7 @@
               </v-text-field>
             </div>
             <div class="mb-8 input-width">
-              <p class="ma-0 text-body-2 mb-1">Idade</p>
+              <p class="ma-0 text-body-2 mb-1">Data de aniversário</p>
               <v-menu
               v-model="menu1"
               :close-on-content-click="false"
@@ -48,7 +48,7 @@
                     <v-text-field 
                       class="pa-0 ma-0 input-border" 
                       outlined
-                      label="Idade"
+                      label="Data de aniversário"
                       solo
                       dense
                       hide-details
@@ -65,6 +65,9 @@
                 <v-date-picker
                   v-model="naver.birthdate"
                   @change="menu1 = false"
+                  locale="pt-BR"
+                  :max="maxDate"
+
                 ></v-date-picker>
             </v-menu>
             </div>
@@ -129,6 +132,8 @@
               <v-date-picker
                 v-model="naver.admission_date"
                 @change="menu2 = false"
+                locale="pt-BR"
+                :max="maxDate"
               ></v-date-picker>
             </v-menu>
             </div>
@@ -206,6 +211,9 @@
       }
     },
     computed:{
+      maxDate(){
+      return   new Date().toISOString().slice(0,10)
+      },
       data_admissao(){
         return this.formatDate(this.naver.admission_date)
       },
@@ -215,9 +223,19 @@
     },
     methods:{
       createNaver(){
+        const newNaver = JSON.parse(JSON.stringify(this.naver))
+        newNaver.admission_date = this.data_admissao
+        newNaver.birthdate = this.data_aniversario
 
-        this.$store.dispatch('naver/create', this.naver)
-        this.dialog = true
+        this.$store.dispatch('naver/create', newNaver)
+        .then((response)=>{
+          this.dialog = true
+        })
+        .catch((error)=>{
+          alert("ocorrou algum problema")
+          console.log(error)
+        })
+        
       },
 
       closeModal(value){
@@ -237,9 +255,6 @@
         return `${day}/${month}/${year}`
       },
 
-    },
-    mounted(){
-      this.$refs.form.reset()
     }
   } 
 </script>

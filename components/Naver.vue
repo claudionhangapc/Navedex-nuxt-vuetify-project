@@ -6,7 +6,7 @@
           <v-list-item class="pa-0">
                   <v-img
                   height="250"
-                  src="/img/IMG_9945_JULIANO.png"
+                  :src="item.url"
                 ></v-img>
           </v-list-item>
           <v-list-item class="pa-0">

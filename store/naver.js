@@ -23,10 +23,18 @@ export const actions = {
     return naver
   },
 
+  async update({commit},{payload,id}){
+    
+    const response = await this.$axios.put(`/navers/${id}`, payload)
+    const naver = response.data
+    commit('UPDATE_SINGLE',naver)
+    return naver
+  },
+
   async delete({commit}, id){
     const response =  await this.$axios.delete(`/navers/${id}`)
     const naver = response.data
-    commit('DELETE', naver)
+    commit('DELETE', id)
     return naver
   }
 
@@ -45,5 +53,13 @@ export const mutations = {
   DELETE(state, id){
     const index = state.navers.findIndex(naver => naver.id ===id)
     state.navers.splice(index,1)
+  },
+
+  UPDATE_SINGLE(state, payload){
+    const index = state.navers.findIndex(naver => naver.id ===payload.id)
+    if (index !== -1) {
+      state.navers.splice(index,1,payload)
+    }
+    
   }
 }
