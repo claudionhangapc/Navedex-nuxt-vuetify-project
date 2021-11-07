@@ -35,12 +35,15 @@
           <v-text-field
           v-model='login.password'
           :rules="rules.password"
+          :type="show1 ? 'text' : 'password'"
+          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
           placeholder="Senha"
           outlined
           dense
           full-width
           height="40"
           hide-details
+          @click:append="show1 = !show1"
           class="input-border"
           >
           </v-text-field>
@@ -80,6 +83,8 @@ export default {
   // OR
   data(){
     return{
+      valid: true,
+      show1:false,
       login:{
         email:'',
         password:''
