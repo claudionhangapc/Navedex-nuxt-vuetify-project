@@ -1,5 +1,7 @@
 # navdex-nuxt-vuetify-project
-
+<p>
+    <img src="static/gifgerado.gif"/>
+</p>
 ## Build Setup
 
 ```bash
