@@ -1,6 +1,7 @@
 # navdex-nuxt-vuetify-project
 <p>
-    <img src="static/gifgerado.gif"/>
+    <img style=" height: 500px;
+  width: 600px;" src="static/gifgerado.gif"/>
 </p>
 ## Build Setup
 
