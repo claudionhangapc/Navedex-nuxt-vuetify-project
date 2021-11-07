@@ -1,5 +1,9 @@
 <template>
-  <v-form >
+  <v-form 
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
     <v-container >
       <v-row align="center" justify="center">
         <v-img
@@ -9,10 +13,11 @@
         ></v-img>    
       </v-row>
       <v-row class="pt-10">
-        <v-col cols="12" class="pa-0 font-weight-black mb-1">Email {{$auth.loggedIn}}</v-col>
+        <v-col cols="12" class="pa-0 font-weight-black mb-1">Email</v-col>
         <v-col cols="12"  class="pa-0"> 
           <v-text-field
           v-model='login.email'
+          :rules="rules.email"
           placeholder="E-mail"
           outlined
           dense
@@ -29,6 +34,7 @@
         <v-col cols="12"  class="pa-0"> 
           <v-text-field
           v-model='login.password'
+          :rules="rules.password"
           placeholder="Senha"
           outlined
           dense
@@ -36,15 +42,26 @@
           height="40"
           hide-details
           class="input-border"
-          :autofocus="true"
           >
           </v-text-field>
+        </v-col>
+      </v-row>
+      <v-row class="pt-8" v-if="error">
+        <v-col cols="12"  class="pa-0"> 
+          <v-alert
+           dense
+           border="1px"
+          type="error"
+          class="mb-0"
+          >
+          E-mail ou senha incorreta
+        </v-alert>
         </v-col>
       </v-row>
       <v-row class="pt-8">
         <v-col cols="12"  class="pa-0">
           <v-btn 
-            @click="userLogin"
+            @click="validationForm"
             class="white--text"
             color="#212121"
             depressed
@@ -64,9 +81,20 @@ export default {
   data(){
     return{
       login:{
-        email:'meusitepc@gmail.com',
-        password:'123457'
-      }
+        email:'',
+        password:''
+      },
+      error:false,
+      rules:{
+          email:[
+            v => !!v || 'email é obrigatório',
+            this.validateEmail
+          ],
+          password:[
+            v => !!v || 'Nome é obrigatório'
+           
+          ]
+        }
     }
   },
   methods:{
@@ -84,8 +112,25 @@ export default {
         this.$router.replace("/")
         
       }catch(err){
-        console.log(err)
+        this.error = true
+        console.log(err.message)
       }
+    },
+    validationForm(){
+        if(this.$refs.form.validate()){
+          this.userLogin()
+        }
+    },
+    validateEmail(text){
+    let message= null
+    const emailPattern =  /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+    if(text.length===0){
+      message = "email deve ser preenchido"
+    }
+    if(!emailPattern.test(text)){
+        message = "email incorreto";
+    } 
+    return  message;
     }
   }
 }

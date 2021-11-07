@@ -206,6 +206,7 @@
           ],
           url:[
             v => !!v || 'Url da foto é obrigatório',
+           this.validateUrlForm
           ],
         }
       }
@@ -253,6 +254,21 @@
         const [year, month, day] = date.split('-')
 
         return `${day}/${month}/${year}`
+      },
+      validateUrlForm(url){
+        
+         // eslint-disable-next-line
+        const reg = new RegExp("^https?://(?:[a-z0-9\-]+\.)+[a-z0-9]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$")
+
+        let message = null;
+        if(url=== null || url.length===0){
+          message = "campo o brigatório"
+        }
+        if(!reg.test(url)){
+          message = "url inválido"
+        }
+         
+         return message
       },
 
     }
