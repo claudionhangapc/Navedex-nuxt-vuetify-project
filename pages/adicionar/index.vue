@@ -260,7 +260,7 @@
          // eslint-disable-next-line
         const reg = new RegExp("^https?://(?:[a-z0-9\-]+\.)+[a-z0-9]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$")
 
-        let message = null;
+        let message = true;
         if(url=== null || url.length===0){
           message = "campo o brigatório"
         }
