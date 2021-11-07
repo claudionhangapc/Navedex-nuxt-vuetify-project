@@ -1,7 +1,7 @@
 # navdex-nuxt-vuetify-project
-<p>
-  [![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
-</p>
+<div>
+  você pode ver a execução plena da aplicação clicando <a href="https://www.youtube.com/watch?v=6McsOa5_B7U">aqui</a>
+</div>  
 ## Build Setup
 
 ```bash
