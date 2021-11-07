@@ -1,7 +1,6 @@
 # navdex-nuxt-vuetify-project
 <p>
-    <img style=" height: 500px;
-  width: 600px;" src="static/gifgerado.gif"/>
+  [![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
 </p>
 ## Build Setup
 
